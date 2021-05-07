@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_07_181133) do
+ActiveRecord::Schema.define(version: 2021_05_07_183903) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -24,6 +24,64 @@ ActiveRecord::Schema.define(version: 2021_05_07_181133) do
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author"
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
     t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource"
+  end
+
+  create_table "answers", force: :cascade do |t|
+    t.integer "submission_id"
+    t.string "value"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["submission_id"], name: "index_answers_on_submission_id"
+  end
+
+  create_table "problems", force: :cascade do |t|
+    t.float "weight", default: 1.0
+    t.string "type"
+    t.string "category"
+    t.string "title"
+    t.string "description"
+    t.integer "priority"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "quiz_problems", force: :cascade do |t|
+    t.integer "problem_id"
+    t.integer "quiz_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["problem_id"], name: "index_quiz_problems_on_problem_id"
+    t.index ["quiz_id"], name: "index_quiz_problems_on_quiz_id"
+  end
+
+  create_table "quizzes", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "name"
+    t.text "description"
+    t.boolean "active", default: true
+    t.float "quorum", default: 1.0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_quizzes_on_user_id"
+  end
+
+  create_table "solutions", force: :cascade do |t|
+    t.integer "problem_id"
+    t.string "value"
+    t.integer "priority"
+    t.boolean "correct", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["problem_id"], name: "index_solutions_on_problem_id"
+  end
+
+  create_table "submissions", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "quiz_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["quiz_id"], name: "index_submissions_on_quiz_id"
+    t.index ["user_id"], name: "index_submissions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
