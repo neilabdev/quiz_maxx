@@ -59,12 +59,13 @@ ActiveRecord::Schema.define(version: 2021_05_07_183903) do
 
   create_table "quizzes", force: :cascade do |t|
     t.integer "user_id"
-    t.string "name"
     t.text "description"
     t.boolean "active", default: true
     t.float "quorum", default: 1.0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.string "title"
     t.index ["user_id"], name: "index_quizzes_on_user_id"
   end
 

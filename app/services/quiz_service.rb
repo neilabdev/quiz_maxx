@@ -67,25 +67,24 @@ class QuizService
     @user = user
   end
 
-  def build_quiz(user:nil,title:,description:nil,category:nil,active:true,&block)
+  def build_quiz(user:nil,name:nil, title:,description:nil,category:nil,active:true,&block)
     Quiz.transaction do |transaction|
-      dsl = QuizDSL.new(quiz:add_quiz(user:user,title:title,description:description,active: active),service:self)
+      dsl = QuizDSL.new(quiz:add_quiz(user:user,name:name, title:title,description:description,active: active),service:self)
       dsl.instance_eval(&block)
       dsl
     end
   end
 
-  def add_quiz(user:nil,title:,description:nil,active:true,&block)
-    quiz = Quiz.new( user: user||@user, name:title,description: description,active:active)
+  def add_quiz(user:nil,name:nil,title:,description:nil,active:true,&block)
+    quiz = Quiz.new( user: user||@user, name:name,title:title,description: description,active:active)
     block.call(quiz) if block_given?
     quiz.save!
     quiz
   end
 
   def add_problem(quiz:, name:nil,title:,description:nil, weight: 1.0, priority:1,&block)
-    problem = quiz.problems.build(name:name, title:title,description:description, weight: weight, priority:priority)
+    problem = quiz.problems.create!(name:name, title:title,description:description, weight: weight, priority:priority)
     block.call(problem) if block_given?
-    problem.save!
     problem
   end
 
@@ -146,32 +145,19 @@ class QuizService
   end
 
   def make_submission(quiz: )
-    submission = Submission.new(user: @user, quiz: quiz)
+    q = quiz.is_a?(String) ? Quiz.named(quiz).first : quiz
+    submission = Submission.new(user: @user, quiz: q)
     submission.save!
     submission
   end
 
-  def build_submission(quiz:nil, submission:, &block)
+  def build_submission(quiz:nil, submission:nil, &block)
     Submission.transaction do |transaction|
-      s = submission || make_submission(quiz: quiz)
+      s = submission || make_submission(quiz: quiz) or raise ArgumentError, "Either :quiz or :submission required"
       dsl = QuizDSL.new(submission:s,service:self)
       dsl.instance_eval(&block) if block_given?
       dsl
-    end
-  end
-
-  def test_syntax
-    build_quiz(title:"foo") do |q|
-      add_problem(name:"revolution1",title: "Year of the revolution") do |p|
-        add_solution(value:"1776",correct:true)
-      end
-      # add_problem()
-    end
-
-    build_submission(quiz:quiz) do
-      add_answer(problem:"name",value: "24")
-      add_answer(problem:"name",value: "24")
-
+      s
     end
   end
 

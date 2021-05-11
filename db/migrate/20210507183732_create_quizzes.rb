@@ -3,6 +3,7 @@ class CreateQuizzes < ActiveRecord::Migration[6.1]
     create_table :quizzes do |t|
       t.belongs_to :user
       t.string :name
+      t.string :title
       t.text :description
       t.boolean :active, default: true
       t.float :quorum, default: 1.0

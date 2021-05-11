@@ -18,7 +18,5 @@ class CreateSubmissions < ActiveRecord::Migration[6.1]
       t.string :value
       t.timestamps
     end
-
-
   end
 end

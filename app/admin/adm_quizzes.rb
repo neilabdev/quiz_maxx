@@ -1,9 +1,10 @@
 ActiveAdmin.register Quiz do
   menu label: "Quiz", parent: "Exam", priority: 50
-  permit_params :name, :description, :active, :quorum,:user_id,  problem_ids: []
+  permit_params :name, :title, :description, :active, :quorum,:user_id,  problem_ids: []
 
   filter :id
   filter :name
+  filter :title
   filter :active
   filter :created_at
   filter :created_at
@@ -13,6 +14,7 @@ ActiveAdmin.register Quiz do
     id_column
 
     column :name
+    column :title
     #   column :description
     column :active
     column :created_at
@@ -24,13 +26,14 @@ ActiveAdmin.register Quiz do
     f.inputs "Details" do # physician's fields
       f.input :user, member_label: :email
       f.input :name
+      f.input :title
       f.input :description
       f.input :quorum
       f.input :active
     end
 
     f.inputs "Problems" do
-      f.input :problems, :as => :check_boxes
+      f.input :problems, :as => :check_boxes,:member_label=> :title
     end
     f.actions
   end
@@ -39,6 +42,7 @@ ActiveAdmin.register Quiz do
     panel "Quiz Details" do
       attributes_table_for  resource do
         row :name
+        row :title
         row :description
         row :active
         row :quorum

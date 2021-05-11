@@ -6,12 +6,15 @@ class Problem < ApplicationRecord
   end
   has_many :quiz_problems
   has_many :quizzes, through: :quiz_problems
+
   validates :title, presence: true
-  validates :solutions, :length => { :minimum => 1 }
+  #  validates :solutions, :length => { :minimum => 1 }
   validates :name, :on=>:create,
             :allow_nil=>true,
             :format => { :with => /[0-9a-zA-Z_]/ }, :if => Proc.new{|f| f.title.present? }
-
+  def named(*names)
+    where("name in (?)",names)
+  end
   accepts_nested_attributes_for :solutions , :quizzes, allow_destroy: true #,:solutions_attributes
 
   before_validation  do
