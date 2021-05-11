@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
+.form-check.quiz {
+    margin-left: 30px;
+}
 * {
     padding: 0;
     margin: 0;
@@ -79,7 +81,7 @@ label {
     transition: 300ms ease-in-out 0s
 }
 
-.options input[type="radio"]:checked~.checkmark {
+.options input[type="checkbox"]:checked~.checkmark {
     background: #590995;
     border: 2px solid #590995;
     transition: 300ms ease-in-out 0s
