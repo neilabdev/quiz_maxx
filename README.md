@@ -1,6 +1,10 @@
 # QUIZ-MAXX
-> A sample Quiz Application for demonstration of design and coding style 😎
+
+A sample Quiz Application for demonstration of design and coding style 😎
+
 ![ alt text](https://github.com/neilabdev/quiz_maxx/blob/master/app/assets/images/demo-preview.png?raw=true)
+
+
 ## Environment
 - Ruby 2.6.6
 - Rails 6.0
