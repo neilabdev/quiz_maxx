@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+  devise_for :users, ActiveAdmin::Devise.config.merge({
+                                                        registrations: 'users/registrations',
+                                                        passwords: 'users/passwords'
+                                                      })
+
 
   resources :quiz do
     member do

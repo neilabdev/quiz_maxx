@@ -13,11 +13,27 @@
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
 
     <%= stylesheet_link_tag 'application', media: 'all'  %>
-    <%= javascript_pack_tag 'application'  %>
     <!-- loaded -->
   </head>
 
   <body>
+  <!-- Navigation-->
+  <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
+  <nav id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <li class="sidebar-brand"><a class="js-scroll-trigger" href="#page-top">Quiz Maxx</a></li>
+      <li class="sidebar-nav-item"><a class="js-scroll-trigger" href="<%= root_path  %>#page-top">Home</a></li>
+      <li class="sidebar-nav-item"><a class="js-scroll-trigger" href="<%= quiz_index_path %>">Quizzes</a></li>
+      <% if current_user.is_admin? %>
+      <li class="sidebar-nav-item"><a class="js-scroll-trigger" href="<%= admin_root_path %>">Admin</a></li>
+        <% end  %>
+      <li class="sidebar-nav-item">
+        <hr/>
+        <a class="js-scroll-trigger" href="<%= destroy_user_session_path %>">Sign-out</a></li>
+    </ul>
+  </nav>
+
     <%= yield %>
+    <%= javascript_pack_tag 'application'  %>
   </body>
 </html>
