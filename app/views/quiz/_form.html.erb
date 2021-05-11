@@ -1,0 +1,30 @@
+
+
+<div class="jumbotron">
+  <h1 class="display-4"><h1><%= quiz.headline %></h1></h1>
+  <p class="lead"><%= quiz.description %></p>
+  <hr class="my-4">
+  <i>Press the submit button when you are done.</i>
+
+</div>
+<%= form.fields_for :answers do |answer_form| %>
+  <% quiz.problems.each_with_index  do |problem, idx| %>
+
+    <div class="form-group row">
+      <h3><%= "#{idx+1}. #{problem.title}" %></h3>
+
+      <div class="col-sm-12">
+        <%= answer_form.fields_for :choice  do |choice_form| %>
+          <% problem.solutions.each_with_index do |solution,sidx| %>
+            <div class="form-check quiz">
+              <%= choice_form.check_box solution.value, index: problem.id , class: "form-check-input", id: "solution#{sidx}" %>
+              <%= answer_form.label solution.value,  class: "form-check-label" ,for: "solution#{sidx}" %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+
+  <% end %>
+<% end %>

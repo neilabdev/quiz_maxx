@@ -1,0 +1,33 @@
+<div class="container">
+  <!-- Heading Row-->
+  <div class="row align-items-center my-5">
+    <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0" src="https://via.placeholder.com/900x400" alt="..."></div>
+    <div class="col-lg-5">
+      <h1 class="font-weight-light">Test Your Skills with Quiz Max</h1>
+      <p>Select one of the many test below to test your knowledge in the specified subject. After clicking 'Take Test' you will be directed to the page where you must answer questions and upon finishing, you will be provided your score.</p>
+    </div>
+  </div>
+  <!-- Call to Action-->
+  <div class="card text-white bg-secondary my-5 py-4 text-center">
+    <div class="card-body"><p class="text-white m-0">Click "Take Test" on your favorite subject to proceed.</p></div>
+  </div>
+  <!-- Content Row-->
+  <div class="row">
+    <% @quizzes.each do |quiz| %>
+      <div class="col-md-<%= {1=>12,2=>6,3=>4}[@quizzes.size] || 4  %> mb-5">
+        <div class="card h-100">
+          <div class="card-body">
+            <h2 class="card-title"><%= quiz.headline  %></h2>
+            <p class="card-text"><%= quiz.description || "No Description" %></p>
+          </div>
+          <div class="card-footer">
+
+            <%= button_to  "Take Test", start_quiz_path(quiz),
+                           data: {confirm: "Are you sure you want to begin test?"},
+                           class: "btn btn-primary btn-sm",   method: :post  %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

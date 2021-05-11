@@ -1,0 +1,8 @@
+
+<div class="container">
+
+    <%= form_for @submission, url: finish_quiz_path(@submission), html: {class: " "}, method: :post do |f| %>
+      <%= render  partial: "form", locals: { form: f, submission: @submission, quiz: @quiz } %>
+      <%= f.submit "Finished", class: 'btn btn-primary', confirm: "Are you sure?" %>
+    <% end %>
+</div>
