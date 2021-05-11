@@ -60,3 +60,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'activeadmin'
 gem 'bootstrap', '~> 5.0.0'
+gem 'devise-bootstrap-views', '~> 1.0'

@@ -24,7 +24,7 @@
       <li class="sidebar-brand"><a class="js-scroll-trigger" href="#page-top">Quiz Maxx</a></li>
       <li class="sidebar-nav-item"><a class="js-scroll-trigger" href="<%= root_path  %>#page-top">Home</a></li>
       <li class="sidebar-nav-item"><a class="js-scroll-trigger" href="<%= quiz_index_path %>">Quizzes</a></li>
-      <% if current_user.is_admin? %>
+      <% if current_user&.is_admin? %>
       <li class="sidebar-nav-item"><a class="js-scroll-trigger" href="<%= admin_root_path %>">Admin</a></li>
         <% end  %>
       <li class="sidebar-nav-item">
