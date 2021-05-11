@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 2021_05_07_183903) do
 
   create_table "problems", force: :cascade do |t|
     t.float "weight", default: 1.0
+    t.string "name"
     t.string "type"
     t.string "category"
     t.string "title"
@@ -45,7 +46,6 @@ ActiveRecord::Schema.define(version: 2021_05_07_183903) do
     t.integer "priority"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "name"
   end
 
   create_table "quiz_problems", force: :cascade do |t|
@@ -59,13 +59,13 @@ ActiveRecord::Schema.define(version: 2021_05_07_183903) do
 
   create_table "quizzes", force: :cascade do |t|
     t.integer "user_id"
+    t.string "name"
+    t.string "title"
     t.text "description"
     t.boolean "active", default: true
     t.float "quorum", default: 1.0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "name"
-    t.string "title"
     t.index ["user_id"], name: "index_quizzes_on_user_id"
   end
 
@@ -100,9 +100,9 @@ ActiveRecord::Schema.define(version: 2021_05_07_183903) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.string "role", default: "student"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "role", default: "student"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
