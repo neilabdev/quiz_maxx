@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2021_05_07_183903) do
     t.integer "priority"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
   end
 
   create_table "quiz_problems", force: :cascade do |t|

@@ -11,6 +11,7 @@ class CreateQuizzes < ActiveRecord::Migration[6.1]
 
     create_table :problems do |t|
       t.float :weight, default: 1.0
+      t.string :name
       t.string :type  # :single,:choice
       t.string :category
       t.string :title

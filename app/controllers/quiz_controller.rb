@@ -10,7 +10,7 @@ class QuizController < ApplicationController
 
   def start
     quiz = Quiz.find(params[:id])
-    submission = quiz_service.build_submission(quiz: quiz)
+    submission = quiz_service.make_submission(quiz: quiz)
     redirect_to quiz_path(submission)
   end
 
@@ -34,7 +34,6 @@ class QuizController < ApplicationController
 
     quiz_service.grade_submission(submission:submission)
 
-    #params[:submission][:answers].keys
     redirect_to score_quiz_path(submission)
   end
 
