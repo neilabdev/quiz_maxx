@@ -28,9 +28,11 @@ ActiveRecord::Schema.define(version: 2021_05_07_183903) do
 
   create_table "answers", force: :cascade do |t|
     t.integer "submission_id"
+    t.integer "problem_id"
     t.string "value"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["problem_id"], name: "index_answers_on_problem_id"
     t.index ["submission_id"], name: "index_answers_on_submission_id"
   end
 
@@ -78,6 +80,12 @@ ActiveRecord::Schema.define(version: 2021_05_07_183903) do
   create_table "submissions", force: :cascade do |t|
     t.integer "user_id"
     t.integer "quiz_id"
+    t.float "score", default: 0.0
+    t.integer "total_correct", default: 0
+    t.integer "total_wrong", default: 0
+    t.integer "total_problems", default: 0
+    t.datetime "completed_at"
+    t.string "status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["quiz_id"], name: "index_submissions_on_quiz_id"

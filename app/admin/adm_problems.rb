@@ -1,7 +1,8 @@
 ActiveAdmin.register Problem do
   menu label: "Problems", parent: "Exam", priority: 79
-  permit_params :title, :description, :weight, :solutions ,
-                 solutions_attributes: [:id, :value, :correct, :_destroy]
+  permit_params :title, :description, :weight, :solutions, :quizzes,
+                solutions_attributes: [:id, :value, :correct, :_destroy],
+                quiz_ids: []
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -18,20 +19,24 @@ ActiveAdmin.register Problem do
   # end
   #
 
-
   form do |f|
     f.semantic_errors *f.object.errors.keys
-    f.inputs "Details" do # physician's fields
+    f.inputs "Details" do
+      # physician's fields
       f.input :title
       f.input :description
       f.input :weight
     end
+    f.inputs "Quizzes" do
+      f.input :quizzes, :as => :check_boxes
+    end
 
-    f.has_many :solutions,allow_destroy: true, sortable: :priority   do |fs|
-      fs.input :value  # it should automatically generate a drop-down select to choose from your existing patients
+    f.has_many :solutions, allow_destroy: true, sortable: :priority do |fs|
+      fs.input :value # it should automatically generate a drop-down select to choose from your existing patients
       fs.input :correct
     end
+
     f.actions
   end
-  
+
 end

@@ -1,0 +1,14 @@
+<%= form.fields_for :answers do |answer_form| %>
+  <% quiz.problems.each_with_index  do |problem, qidx| %>
+    <div><%= problem.title %></div>
+    <%= answer_form.fields_for :word_answer  do |word_form| %>
+      <%= word_form.text_field  :value, index: problem.id %>
+    <% end %>
+
+    <%= answer_form.fields_for :choice  do |choice_form| %>
+      <% problem.solutions.each_with_index do |solution,sidx| %>
+        <%= choice_form.check_box solution.value, index: problem.id  %>  <%= answer_form.label solution.value %>  <br />
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

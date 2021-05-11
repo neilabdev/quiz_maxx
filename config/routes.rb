@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
-
   devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  resources :quiz do
+    member do
+      post 'start'
+      post 'finish'
+    end
+  end
+  root to:  'home#index'
 end
