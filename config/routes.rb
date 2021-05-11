@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     member do
       post 'start'
       post 'finish'
+      get 'score'
     end
   end
   root to:  'home#index'

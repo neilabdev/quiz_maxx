@@ -14,6 +14,11 @@ class QuizController < ApplicationController
     redirect_to quiz_path(submission)
   end
 
+  def score
+    @submission = current_user.submissions.find(params[:id])
+
+  end
+
   def finish
     submission = current_user.submissions.find(params[:id])
     choice = params[:submission][:answers][:choice]
@@ -30,7 +35,7 @@ class QuizController < ApplicationController
     quiz_service.grade_submission(submission:submission)
 
     #params[:submission][:answers].keys
-    redirect_to quiz_path(submission)
+    redirect_to score_quiz_path(submission)
   end
 
   def show

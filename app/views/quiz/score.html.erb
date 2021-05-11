@@ -1,0 +1,8 @@
+
+
+<div class="jumbotron">
+  <h1><%= @submission.quiz.name %></h1>
+  <p class="lead"><%=  @submission.quiz.description %></p>
+  <p> You answered <%= @submission.total_correct %> out of <%= @submission.total_problems %> for a score of <%= (@submission.score * 100).to_i %>&percnt; </p>
+  <a class="btn btn-lg btn-primary" href="<%= quiz_index_path %>" role="button">Take Another?</a>
+</div>
