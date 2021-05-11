@@ -1,7 +1,7 @@
 
 
 admin_user = User.create!(email: 'admin@neilab.com', role: User::Role::ADMIN, password: 'password', password_confirmation: 'password')
-student_user = User.create!(email: 'studen@neilab.com', role: User::Role::STUDENT, password: 'password', password_confirmation: 'password')
+student_user = User.create!(email: 'student@neilab.com', role: User::Role::STUDENT, password: 'password', password_confirmation: 'password')
 
 quiz_service = QuizService.new(admin_user)
 quiz_service.build_quiz(name: "american_history", title: "American History",
@@ -14,8 +14,8 @@ quiz_service.build_quiz(name: "american_history", title: "American History",
   end
 
   add_problem(name: "firstpresident", title: "The First President of the United States?") do
-    add_solution(value: "Alexander Hamilton", correct: true)
-    add_solution(value: "George Washington", correct: false)
+    add_solution(value: "Alexander Hamilton", correct: false)
+    add_solution(value: "George Washington", correct: true)
     add_solution(value: "Barack Obama", correct: false)
     add_solution(value: "Hillary Clinton", correct: false)
   end

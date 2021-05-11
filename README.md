@@ -1,24 +1,59 @@
-# README
+# QUIZ-MAXX
+> A sample Quiz Application for demonstration of design and coding style 😎
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Environment
+- Ruby 2.6.6
+- Rails 6.0
 
-Things you may want to cover:
 
-* Ruby version
+## Setup
 
-* System dependencies
+In order to setup application downloading the appropriate ruby/rails you may execute the following:
 
-* Configuration
+```shell
+./bin/setup
+```
 
-* Database creation
+This will drop the database, load the schema and run seed the database, all of which you may do manually.
 
-* Database initialization
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+## Sample Accounts & Data
 
-* ...
+Seeding the database creates sample testing data as well as two defualt accounts, one admin.
+
+```text
+login: admin@neilab.com
+password: 'password'
+```
+
+
+
+And a sample student account:
+
+```text
+ login: student@neilab.com
+ password: 'password'
+```
+
+## Architecture 
+
+The Application utilizes ActiveAdmin for administration and Devise for authentication. Quiz scores and  managed using QuizService which contains a DSL for building data and helper methods for each respective model. In particular, for grading a quiz, the :grade_submission or :build_submission methods are used.
+
+## Testing
+
+Tests are written in *Rspec* and *FactoryBot*, with primary testing functionality existing in the QuizService spec.
+
+> spec/services/quiz_service_spec.rb 
+
+You may run test using rspec:
+
+```shell
+rspec 
+...
+
+Finished in 0.15053 seconds (files took 0.82938 seconds to load)
+3 examples, 0 failures
+
+```

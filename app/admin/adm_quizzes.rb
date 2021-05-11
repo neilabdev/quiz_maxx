@@ -54,8 +54,13 @@ ActiveAdmin.register Quiz do
 
     panel "Problems" do
       table_for  resource.problems do
-        column  :id
-        column :title
+        column :id do |r|
+          link_to r.id, admin_problem_path(r)
+        end
+        column  :title do |r|
+          link_to r.title, admin_problem_path(r)
+        end
+
         column :created_at
       end
     end
