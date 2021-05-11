@@ -2,8 +2,9 @@
 
 A sample Quiz Application for demonstration of design and coding style 😎
 
-![ alt text](https://github.com/neilabdev/quiz_maxx/blob/master/app/assets/images/demo-preview.png?raw=true)
-
+[![ alt text](https://github.com/neilabdev/quiz_maxx/blob/master/app/assets/images/demo-preview.png?raw=true)](https://youtu.be/Y04YAmkRDbs)
+ 
+[Watch Demo on Youtube!](https://youtu.be/Y04YAmkRDbs)
 
 ## Environment
 - Ruby 2.6.6
