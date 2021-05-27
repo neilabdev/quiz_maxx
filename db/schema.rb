@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_07_183903) do
+ActiveRecord::Schema.define(version: 2021_05_26_184018) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2021_05_07_183903) do
     t.integer "priority"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "solution_count", default: 0
   end
 
   create_table "quiz_problems", force: :cascade do |t|

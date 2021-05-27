@@ -40,6 +40,7 @@ class QuizController < ApplicationController
   def show
     @submission = Submission.find(params[:id])
     @quiz = @submission&.quiz
+
   end
 
   private

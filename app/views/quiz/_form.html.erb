@@ -15,6 +15,8 @@
 
       <div class="col-sm-12">
         <%= answer_form.fields_for :choice  do |choice_form| %>
+
+
           <% problem.solutions.each_with_index do |solution,sidx| %>
             <div class="form-check quiz">
               <%= choice_form.check_box solution.value, index: problem.id , class: "form-check-input", id: "solution#{sidx}" %>

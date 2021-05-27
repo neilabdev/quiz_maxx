@@ -29,6 +29,7 @@ ActiveAdmin.register Problem do
         row :title
         row :description
         row :priority
+        row :solution_count
         row :created_at
         row :updated_at
       end

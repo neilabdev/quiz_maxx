@@ -12,6 +12,9 @@ class Problem < ApplicationRecord
   validates :name, :on=>:create,
             :allow_nil=>true,
             :format => { :with => /[0-9a-zA-Z_]/ }, :if => Proc.new{|f| f.title.present? }
+
+
+
   def named(*names)
     where("name in (?)",names)
   end
@@ -20,11 +23,20 @@ class Problem < ApplicationRecord
   before_validation  do
     self.name = generate_slug(self.title) unless self.name.present?
     self.priority = 1 unless self.priority.present?
+
+  end
+
+  before_save do
+    tally_solutions
   end
 
   private
 
   def generate_slug(title)
     title_slug = title.to_s.strip.downcase.gsub(/[^a-zA-Z0-9]/, "_")
+  end
+
+  def  tally_solutions
+    self.solution_count = self.solutions.where(correct:true).count
   end
 end
