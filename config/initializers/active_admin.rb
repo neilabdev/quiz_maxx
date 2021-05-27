@@ -110,6 +110,7 @@ ActiveAdmin.setup do |config|
   #
   # Default:
    config.logout_link_method = :delete
+  config.logout_link_path = :destroy_user_session_path
 
   # == Root
   #
